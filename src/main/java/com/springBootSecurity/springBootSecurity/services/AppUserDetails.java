@@ -15,13 +15,13 @@ import java.util.stream.Collectors;
 public class AppUserDetails implements UserDetails {
 
 
-    private  String name;
+    private  String username;
     private  String password;
 
     private List<GrantedAuthority> authorities;
 
     public AppUserDetails(AppUser appUser) {
-        name=appUser.getUsername();
+        username=appUser.getUsername();
         password=appUser.getPassword();
         authorities= Arrays.stream(appUser.getRoles().split(","))
                 .map(SimpleGrantedAuthority::new)
@@ -40,7 +40,7 @@ public class AppUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return getUsername();
+        return username;
     }
 
     @Override
