@@ -28,15 +28,7 @@ public class SecurityConfiguration{
     public JwtFilter jwtFilter;
     @Bean
     public UserDetailsService userDetailsService(){
-//        UserDetails admin = User.withUsername("admin")
-//                .password(encoder.encode("1234"))
-//                .roles("Admin")
-//                .build();
-//
-//        UserDetails user = User.withUsername("user")
-//                .password(encoder.encode("1234"))
-//                .roles("User")
-//                .build();
+
         return new AppUserInfo();
     }
 
@@ -46,7 +38,7 @@ public class SecurityConfiguration{
       return http.csrf()
                .disable()
                .authorizeHttpRequests()
-               .requestMatchers("/authenticateUser","/greetings","/uploadUser").permitAll()
+               .requestMatchers("/authenticateUser","/greetings","/uploadUser" ,"/refreshToken").permitAll()
                .and()
                .authorizeHttpRequests().requestMatchers("/products/**")
                .authenticated().and()

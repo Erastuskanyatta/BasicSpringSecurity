@@ -4,7 +4,7 @@ import com.springBootSecurity.springBootSecurity.model.AppUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -12,11 +12,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
+
 public class AppUserDetails implements UserDetails {
 
 
     private  String username;
     private  String password;
+    private  String email;
 
     private List<GrantedAuthority> authorities;
 
@@ -41,6 +43,10 @@ public class AppUserDetails implements UserDetails {
     @Override
     public String getUsername() {
         return username;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     @Override
