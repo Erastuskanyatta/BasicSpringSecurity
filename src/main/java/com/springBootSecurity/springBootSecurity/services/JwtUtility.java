@@ -1,6 +1,7 @@
 package com.springBootSecurity.springBootSecurity.services;
 
 
+import com.auth0.jwt.algorithms.Algorithm;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
