@@ -7,6 +7,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +21,8 @@ import java.util.function.Function;
 @Component
 public class JwtUtility {
 
+
+    private AppUserDetails appUserDetails;
     @Value("${jwt.secret}")
     private String SecretKey ;
 // extract username from JWT token
@@ -32,14 +35,13 @@ public class JwtUtility {
         return  createToken(claims, username);
 
     }
-// create jwt token
-    private String createToken(Map<String, Object> claims, String username ) {
-
+  // create jwt token
+    private String createToken(Map<String, Object> claims , String username) {
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(username)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis()+ 120000))
+                .setExpiration(new Date(System.currentTimeMillis()+ 3600000))
                 .signWith(getSignKey(),SignatureAlgorithm.HS256).compact();
     }
 

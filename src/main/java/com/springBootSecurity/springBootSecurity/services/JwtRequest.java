@@ -12,4 +12,5 @@ import org.springframework.stereotype.Component;
 public class JwtRequest {
     public  String username;
     public  String password;
+    public  String email;
 }

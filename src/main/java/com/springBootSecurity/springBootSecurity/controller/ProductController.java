@@ -32,11 +32,11 @@ public class ProductController {
     @Autowired
     public AuthenticationManager authenticationManager;
 
-    @GetMapping("/greetings")
+    @GetMapping("/user/greetings")
     public  String Greeting(){
         return "Greetings! This end-point is not secure";
     }
-    @GetMapping("/products/greetings")
+    @GetMapping("/hello/greetings")
     public  String Hello(){
         return "Greetings! This end-point is secure";
     }
@@ -53,13 +53,13 @@ public class ProductController {
     }
 
     //save User
-    @PostMapping("/uploadUser")
+    @PostMapping("/user/uploadUser")
     public AppUser appUser(@RequestBody AppUser appUser){
         return  productService.uploadUser(appUser);
     }
 
     //login
-    @PostMapping("/authenticateUser")
+    @PostMapping("/user/authenticateUser")
     public JWTResponse Authenticate(@RequestBody JwtRequest  jwtRequest){
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(jwtRequest.getUsername(), jwtRequest.getPassword())
@@ -77,7 +77,7 @@ public class ProductController {
 
 
     //refresh token
-    @PostMapping("/refreshToken")
+    @PostMapping("/user/refreshToken")
     public JWTResponse createRefreshToken(@RequestBody RefreshTokenDto refreshTokenDto){
       return refreshTokenService.findByRefreshToken(refreshTokenDto.getRefreshToken())
                .map(refreshTokenService::verifyExpiry)
